@@ -1,0 +1,180 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #f4f6f9;
+}
+
+.container {
+    display: flex;
+    min-height: 100vh;
+}
+
+.sidebar {
+    width: 240px;
+    background-color: #1e293b;
+    color: white;
+    padding: 25px 20px;
+}
+
+.sidebar h2 {
+    margin-bottom: 35px;
+}
+
+.sidebar nav a {
+    display: block;
+    color: #cbd5e1;
+    text-decoration: none;
+    padding: 14px;
+    margin-bottom: 8px;
+    border-radius: 6px;
+}
+
+.sidebar nav a:hover,
+.sidebar nav a.active {
+    background-color: #334155;
+    color: white;
+}
+
+.main-content {
+    flex: 1;
+    padding: 35px;
+}
+
+.main-content header {
+    margin-bottom: 30px;
+}
+
+.main-content header h1 {
+    color: #1e293b;
+    margin-bottom: 10px;
+}
+
+.main-content header p {
+    color: #64748b;
+}
+
+.summary-cards {
+    display: flex;
+    gap: 25px;
+    margin-top: 25px;
+}
+
+.card {
+    flex: 1;
+    background-color: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+}
+
+.card h3 {
+    color: #64748b;
+    font-size: 16px;
+    margin-bottom: 15px;
+}
+
+.card h2 {
+    color: #1e293b;
+    font-size: 25px;
+}
+
+.transactions-section {
+    background-color: white;
+    margin-top: 35px;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+}
+
+.transactions-section h2 {
+    color: #1e293b;
+    margin-bottom: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+th, td {
+    padding: 15px;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+th {
+    color: #64748b;
+    background-color: #f8fafc;
+}
+
+td {
+    color: #334155;
+}
+.form-section {
+    background: white;
+    margin-top: 30px;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+}
+
+.form-section h2 {
+    margin-bottom: 20px;
+    color: #1e293b;
+}
+
+.form-section label {
+    display: block;
+    margin: 12px 0 8px;
+}
+
+.form-section input,
+.form-section select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+}
+
+.form-section button {
+    margin-top: 20px;
+    padding: 12px 25px;
+    background: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+/* Charts Section */
+.charts-section {
+    display: flex;
+    gap: 25px;
+    margin-top: 30px;
+}
+
+.chart-card {
+    flex: 1;
+    min-width: 0;
+    background-color: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+}
+
+.chart-card h2 {
+    color: #1e293b;
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.chart-card canvas {
+    width: 100% !important;
+    max-height: 300px;
+}

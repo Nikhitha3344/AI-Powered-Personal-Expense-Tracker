@@ -1,0 +1,186 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Expense Tracker</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+    <div class="container">
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <h2>ExpenseAI</h2>
+
+            <nav>
+                <a href="#dashboard" class="active">Dashboard</a>
+                <a href="#transactions">Transactions</a>
+                <a href="#transactions">Income</a>
+                <a href="#transactions">Expenses</a>
+                <a href="#ai-assistant">AI Assistant</a>
+                <a href="#reports">Reports</a>
+            </nav>
+        </aside>
+
+<!-- Main Dashboard -->
+<main id="dashboard" class="main-content">
+    <header>
+        <h1>Dashboard</h1>
+        <p>Welcome to your Personal Expense Tracker!</p>
+    </header>
+
+    
+<section class="summary-cards">
+
+    <div class="card">
+        <h3>Total Income</h3>
+        <h2>₹{{ total_income }}</h2>
+    </div>
+
+    <div class="card">
+        <h3>Total Expenses</h3>
+        <h2>₹{{ total_expenses }}</h2>
+    </div>
+
+    <div class="card">
+        <h3>Balance</h3>
+        <h2>₹{{ balance }}</h2>
+    </div>
+
+</section>
+
+<!-- Charts Section -->
+<section id="reports" class="charts-section">
+
+    <div class="chart-card">
+        <h2>Income vs Expenses</h2>
+        <canvas id="incomeExpenseChart"></canvas>
+    </div>
+
+    <div class="chart-card">
+        <h2>Category-wise Expenses</h2>
+        <canvas id="categoryExpenseChart"></canvas>
+    </div>
+
+</section>
+
+
+<!-- Recent Transactions -->
+<section id="transactions" class="transactions-section">
+
+    <h2>Recent Transactions</h2>
+    <input type="text" id="searchInput" placeholder="Search transactions...">
+    <select id="filterType">
+    <option value="All">All Transactions</option>
+    <option value="Income">Income</option>
+    <option value="Expense">Expense</option>
+</select>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Description</th>
+                <th>Category</th>
+                <th>Date</th>
+                <th>Amount</th>
+                <th>Type</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+
+        
+<tbody id="transactionList">
+    {% for transaction in transactions %}
+    <tr data-id="{{ transaction.id }}">
+        <td>{{ transaction.description }}</td>
+        <td>{{ transaction.category }}</td>
+        <td>{{ transaction.date }}</td>
+        <td>₹{{ transaction.amount }}</td>
+        <td>{{ transaction.type }}</td>
+        <td>
+            <button onclick="editTransaction(this)">Edit</button>
+            <button onclick="deleteTransaction(this)">Delete</button>
+        </td>
+    </tr>
+    {% endfor %}
+</tbody>
+
+    </table>
+
+</section>
+
+<!-- Add Transaction -->
+<section class="form-section">
+
+    <h2>Add New Transaction</h2>
+
+    <form id="transactionForm" action="/add" method="POST">
+
+        <label>Description</label>
+        <input type="text" id="description" name="description" placeholder="Enter description">
+
+
+        <label>Amount</label>
+       <input type="number" id="amount" name="amount" placeholder="Enter amount">
+        <label>Category</label>
+        <select id="category" name="category">
+            <option value="">Select Category</option>
+            <option>Salary</option>
+            <option>Food</option>
+            <option>Travel</option>
+            <option>Shopping</option>
+            <option>Others</option>
+        </select>
+
+        <label>Transaction Type</label>
+        <select id="type" name="type">
+            <option>Income</option>
+            <option>Expense</option>
+        </select>
+
+        <label>Date</label>
+        <input type="date" id="date" name="date">
+
+        <button type="submit">Add Transaction</button>
+
+    </form>
+
+</section>
+
+
+</main>
+
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        const totalIncome = {{ total_income | tojson }};
+        const totalExpenses = {{ total_expenses | tojson }};
+        const categoryLabels = {{ category_labels | tojson }};
+        const categoryAmounts = {{ category_amounts | tojson }};
+    </script>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+    <!-- AI Finance Assistant -->
+<section id="ai-assistant" class="form-section">
+    <h2>AI Finance Assistant</h2>
+    <p>Ask questions about your income and expenses.</p>
+
+    <div id="chatMessages">
+        <p>AI: Hello! How can I help you with your finances?</p>
+    </div>
+
+    <input
+        type="text"
+        id="chatInput"
+        placeholder="Ask about your expenses..."
+    >
+
+    <button onclick="sendMessage()">Send</button>
+</section>
+</body>
+</html>
